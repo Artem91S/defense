@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView
 import pandas as pd
 from uuid import uuid4
@@ -6,18 +6,17 @@ from uuid import uuid4
 from .models import Client
 from .form import CreditForm
 import time
-# from analysing_data.clean_data_df import df
 from analysing_data.training_of_model import pipeline
 
 
 def success(request):
     user = Client.objects.last()
     print(user.promo_code)
-    return render(request, 'success.html', context={'promo': user.promo_code, 'title':'Success page'})
+    return render(request, 'success.html', context={'promo': user.promo_code, 'title': 'Success page'})
 
 
 def unsuccess(request):
-    return render(request, 'unsuccess.html', context={'title':'Unsuccess page'})
+    return render(request, 'unsuccess.html', context={'title': 'Unsuccess page'})
 
 
 class GetDataUser(CreateView):
@@ -28,14 +27,11 @@ class GetDataUser(CreateView):
         'title': 'Main Page'
     }
 
-
-    #
     def form_valid(self, form):
         data = form.save(commit=False)
         name = form.cleaned_data.pop('name')
         df = pd.DataFrame([form.cleaned_data])
         promo = uuid4()
-
         p = pipeline.predict(df)
 
         if p[0] == 1:
@@ -47,4 +43,3 @@ class GetDataUser(CreateView):
         else:
             print("Кредит не схвалено")
             return redirect('unsuccess', )
-

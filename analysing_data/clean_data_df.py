@@ -26,10 +26,3 @@ statistics = df.describe()
 correlation = df.corr(numeric_only=True)
 
 missing_values = df.isna().sum()
-
-# print(set(df['Gender']))
-# print(set(df['Married']))
-# print(set(df['Education']))
-# print(set(df['Self_Employed']))
-# print(set(df['Property_Area']))
-# print(set(df['Dependents']))

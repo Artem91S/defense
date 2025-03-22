@@ -1,13 +1,6 @@
 from django.db import models
 
 
-# print(set(df['Gender'])) # {'Female', 'Male'}
-# print(set(df['Married'])) # {'No', 'Yes'}
-# print(set(df['Education'])) # {'Not Graduate', 'Graduate'}
-# print(set(df['Self_Employed'])) # {'No', 'Yes'}
-# print(set(df['Property_Area'])) # {'Semiurban', 'Urban', 'Rural'}
-
-
 class Client(models.Model):
     class Gender(models.TextChoices):
         FEMALE = 'Female'
