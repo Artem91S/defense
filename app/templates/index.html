@@ -1,0 +1,56 @@
+{%  extends "base.html" %}
+{% block content%}
+{% load static %}
+<section id="hero">
+    <div class="image_hero_block">
+        <img class="image_hero" src="{% static 'image/hero.webp' %}" alt="Artembank"/>
+    </div>
+    <div class="hero-content">
+        <h1>Банк Артем - Ваш надійний партнер у фінансах</h1>
+        <p>Отримайте вигідні умови кредитування та швидку відповідь на заявку.</p>
+    </div>
+</section>
+
+<section id="benefits">
+    <h2>Чому ми?</h2>
+    <div class="benefit-item">
+        <h3>Швидкість</h3>
+        <p>Миттєва обробка заявок і швидка відповідь.</p>
+    </div>
+    <div class="benefit-item">
+        <h3>Доступність</h3>
+        <p>Низькі відсоткові ставки та зручні умови кредитування.</p>
+    </div>
+    <div class="benefit-item">
+        <h3>Надійність</h3>
+        <p>Безпека та конфіденційність ваших даних.</p>
+    </div>
+</section>
+
+<section id="application-form">
+    <h2>Заповніть заявку</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <div class="form-error">{{form.non_field_errors}}</div>
+        <div class="form_block_container">
+            {% for f in form %}
+
+            <label class="form-label" for="{{f.id_for_label}}">
+                {{f.label}} {{f}}
+                {% if f.errors %}
+                <div class="form-error">{{f.errors}}</div>
+                {% endif%}
+            </label>
+
+            {% endfor %}
+        </div>
+        <button type="submit">Send data</button>
+
+
+    </form>
+    <p id="loading" style="display: none; color: blue;">Loading... Please wait</p>
+</section>
+
+
+{% endblock %}

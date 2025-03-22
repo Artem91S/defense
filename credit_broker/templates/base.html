@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<script>
+
+</script>
+<body class="body">
+<main>
+    {% include 'menu.html' %}
+    {% block content %}
+    {% endblock %}
+</main>
+<footer>
+    <p class="footer">Copyright © ArtemBank, © 2025</p>
+</footer>
+</body>
+</html>
